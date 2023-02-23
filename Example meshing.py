@@ -13,13 +13,13 @@ point3 = gmsh.model.geo.add_point(0.5, 0.3, 0)
 point4 = gmsh.model.geo.add_point(0.1, 0.3, 0)
  
 # Edge of square:
-line1 = gmsh.model.geo.add_line(point1, point2)
-line2 = gmsh.model.geo.add_line(point2, point3)
-line3 = gmsh.model.geo.add_line(point3, point4)
-line4 = gmsh.model.geo.add_line(point4, point1)
+line1 = gmsh.model.geo.add_line(1, 2)
+line2 = gmsh.model.geo.add_line(2, 3)
+line3 = gmsh.model.geo.add_line(3, 4)
+line4 = gmsh.model.geo.add_line(4, 1)
  
 # face of square:
-face1 = gmsh.model.geo.add_curve_loop([line1, line2, line3, line4])
+face1 = gmsh.model.geo.add_curve_loop([1,2,3,4])
  
 # surfaces of square:
 gmsh.model.geo.add_plane_surface([face1])
