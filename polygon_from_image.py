@@ -21,13 +21,13 @@ def polygon(filename):
    big_contours=[]
    for cnt in contours:
       #print(0.005*cv2.arcLength(cnt, True))
-      approx = cv2.approxPolyDP(cnt, 1, True)#avec une précision de 1 on passe de 1800 à 151 points du contour.
+      approx = cv2.approxPolyDP(cnt, 20, True)#avec une précision de 1 on passe de 1800 à 151 points du contour.
 
-      if len(approx) >= 11:
+      if len(approx) >10:
          img = cv2.drawContours(img, [approx], -1, (0,255,255), 3)
          print("nombre de points",len(approx))
          big_contours.append(approx)
-   #cv2.imshow("Polygon", img)
+   cv2.imshow("Polygon", img)
    cv2.waitKey(0)
    cv2.destroyAllWindows()
 
@@ -36,8 +36,8 @@ def polygon(filename):
 
 if __name__ == '__main__':
    #result=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/pomme.png')
-   result=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/silhouette.png')
-   #result=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/chateau.png')
-   for i in result:
-      for j in i:
-         print(j[0],j[0][0],j[0][1],type(j[0][0]))
+   #result=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/silhouette.png')
+   result=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/chateau.png')
+   # for i in result:
+   #    for j in i:
+   #       print(j[0],j[0][0],j[0][1],type(j[0][0]))
