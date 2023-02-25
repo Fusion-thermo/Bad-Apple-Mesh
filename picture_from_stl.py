@@ -2,9 +2,7 @@ from PIL import Image, ImageDraw
 from mesh_from_polygon import meshing
 from polygon_from_image import polygon
 
-def picture():
-    with open("C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/GFG.stl") as stl:
-        texte=stl.read()
+def picture(texte):
     lignes=texte.split('\n')
 
     #récupère les coos de chaque point de chaque triangle
@@ -39,5 +37,5 @@ if __name__ == '__main__':
     #contours=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/pomme.png')
     #contours=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/silhouette.png')
     contours=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/chateau.png')
-    meshing(contours)
-    picture()
+    texte=meshing(contours)
+    picture(texte)

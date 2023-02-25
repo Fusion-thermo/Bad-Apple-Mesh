@@ -4,13 +4,14 @@ from polygon_from_image import polygon
 
 
 def meshing(contours):
-	# Initialize gmsh:
-	gmsh.initialize()
-	
-	lc = 1e-2 #si mis en 4è argument définit la densité de la grille
-
-	faces=[]
+	texte=""
 	for contour in contours:
+		# Initialize gmsh:
+		gmsh.initialize()
+		
+		lc = 1e-2 #si mis en 4è argument définit la densité de la grille
+
+		faces=[]
 		lignes=[]
 		#points=[]
 		debut=gmsh.model.geo.add_point(contour[0][0][0], contour[0][0][1], 0)
@@ -27,18 +28,23 @@ def meshing(contours):
 		face=gmsh.model.geo.add_curve_loop(lignes)
 		faces.append(face)
 
-	gmsh.model.geo.add_plane_surface(faces)#connecte les faces qui lui sont données donc il faire chaque contour séparément
-	
-	# Create the relevant Gmsh data structures
-	# from Gmsh model.
-	gmsh.model.geo.synchronize()
-	
-	# Generate mesh:
-	gmsh.model.mesh.generate()
-	
-	# Write mesh data:
-	gmsh.write("C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/GFG.msh")
-	gmsh.write("C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/GFG.stl")
+		gmsh.model.geo.add_plane_surface(faces)#connecte les faces qui lui sont données donc il faire chaque contour séparément
+		
+		# Create the relevant Gmsh data structures
+		# from Gmsh model.
+		gmsh.model.geo.synchronize()
+		
+		# Generate mesh:
+		gmsh.model.mesh.generate()
+		
+		# Write mesh data:
+		gmsh.write("C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/GFG.msh")
+		gmsh.write("C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/GFG.stl")
+		gmsh.clear()
+		gmsh.finalize()
+		with open("C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/GFG.stl") as stl:
+			texte+=stl.read()
+	return texte
 
 
 if __name__ == '__main__':
