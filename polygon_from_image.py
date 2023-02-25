@@ -21,7 +21,7 @@ def polygon(filename):
    big_contours=[]
    for cnt in contours:
       #print(0.005*cv2.arcLength(cnt, True))
-      approx = cv2.approxPolyDP(cnt, 20, True)#avec une précision de 1 on passe de 1800 à 151 points du contour.
+      approx = cv2.approxPolyDP(cnt, 1, True)#avec une précision de 1 on passe de 1800 à 151 points du contour.
 
       if len(approx) >10:
          img = cv2.drawContours(img, [approx], -1, (0,255,255), 3)
