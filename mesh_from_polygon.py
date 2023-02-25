@@ -38,7 +38,7 @@ def meshing(contours):
 		gmsh.model.mesh.generate()
 		
 		# Write mesh data:
-		gmsh.write("C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/GFG.msh")
+		#gmsh.write("C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/GFG.msh")
 		gmsh.write("C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/GFG.stl")
 		gmsh.clear()
 		gmsh.finalize()
@@ -48,8 +48,8 @@ def meshing(contours):
 
 
 if __name__ == '__main__':
-	#contours=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/pomme.png')
-	#contours=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/silhouette.png')
-	contours=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/chateau.png')
+	#contours,fond=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/pomme.png')
+	#contours,fond=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/silhouette.png')
+	contours,fond=polygon('C:/Users/jeanb/OneDrive/Documents/Python/Bad-Apple-Mesh/chateau.png')
 	meshing(contours)
 
