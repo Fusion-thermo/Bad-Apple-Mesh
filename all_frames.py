@@ -6,14 +6,9 @@ import glob
 import os
 
 path=os.path.realpath(__file__)
-fin=-1
-while path[fin]!="\\":
-    fin-=1
-chemin=path[:fin+1].replace('\\','/')
-fin-=1
-while path[fin]!="\\":
-    fin-=1
-chemin_frames=path[:fin+1].replace('\\','/')
+fin=path.rfind('\\')
+chemin=path[:fin+1]
+chemin_frames=path[:fin+1]
 path=chemin_frames+'Bad-Apple-circles/Bad Apple frames/'
 meshedframes=chemin+'Meshed frames'
 all_meshed=glob.glob(meshedframes+'/*')

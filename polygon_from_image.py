@@ -50,13 +50,8 @@ def polygon(filename):
 
 if __name__ == '__main__':
    path=os.path.realpath(__file__)
-   fin=-1
-   while path[fin]!="\\":
-       fin-=1
-   fin-=1
-   while path[fin]!="\\":
-       fin-=1
-   chemin=path[:fin+1].replace('\\','/')
+   fin=path[:path.rfind('\\')-1].rfind('\\')
+   chemin=path[:fin+1]
    #result,fond=polygon(chemin+'Bad-Apple-Mesh/pomme.png')
    #result,fond=polygon(chemin+'Bad-Apple-Mesh/silhouette.png')
    #result,fond=polygon(chemin+'Bad-Apple-Mesh/chateau.png')

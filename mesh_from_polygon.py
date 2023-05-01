@@ -4,10 +4,8 @@ from polygon_from_image import polygon
 import os
 
 path=os.path.realpath(__file__)
-fin=-1
-while path[fin]!="\\":
-    fin-=1
-chemin=path[:fin+1].replace('\\','/')
+fin=path.rfind('\\')
+chemin=path[:fin+1]
 
 def meshing(contour):
 	# Initialize gmsh:
