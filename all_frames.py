@@ -3,14 +3,23 @@ from mesh_from_polygon import meshing_main
 from polygon_from_image import polygon
 from picture_from_stl import picture
 import glob
-from Chemin import chemin
+import os
 
-path=chemin+'Bad-Apple-circles/Bad Apple frames/'
-meshedframes=chemin+'Bad-Apple-Mesh/Meshed frames'
+path=os.path.realpath(__file__)
+fin=-1
+while path[fin]!="\\":
+    fin-=1
+chemin=path[:fin+1].replace('\\','/')
+fin-=1
+while path[fin]!="\\":
+    fin-=1
+chemin_frames=path[:fin+1].replace('\\','/')
+path=chemin_frames+'Bad-Apple-circles/Bad Apple frames/'
+meshedframes=chemin+'Meshed frames'
 all_meshed=glob.glob(meshedframes+'/*')
 
 #to start again from the last meshed
-#meshedframes2=chemin+'Bad-Apple-Mesh/Meshed frames 2'
+#meshedframes2=chemin+'Meshed frames 2'
 #all_meshed2=glob.glob(meshedframes2+'/*')
 #nombres=[int(filepath[filepath.find('\\')+1:filepath.find('.')]) for filepath in all_meshed2]
 #nombres.sort()
@@ -34,9 +43,9 @@ for frame in range(start,6573):
     picture(texte,fond,contours,str(frame))
 
 
-""" # Last missing framese (70)
+""" # Last missing frames (70)
 for frame in range(1,6573):
     if meshedframes+'\\'+str(frame)+".png" not in all_meshed:
         print("frame n°",frame)
-        picture= Image.open(chemin+'Bad-Apple-Mesh/Meshed frames/'+str(frame-1)+".png")
-        picture.save(chemin+'Bad-Apple-Mesh/Meshed frames/'+str(frame)+".png") """
+        picture= Image.open(chemin+'Meshed frames/'+str(frame-1)+".png")
+        picture.save(chemin+'Meshed frames/'+str(frame)+".png") """

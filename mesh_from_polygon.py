@@ -1,7 +1,13 @@
 import gmsh
 import sys
 from polygon_from_image import polygon
-from Chemin import chemin
+import os
+
+path=os.path.realpath(__file__)
+fin=-1
+while path[fin]!="\\":
+    fin-=1
+chemin=path[:fin+1].replace('\\','/')
 
 def meshing(contour):
 	# Initialize gmsh:
@@ -28,8 +34,8 @@ def meshing(contour):
 	# Generate mesh:
 	gmsh.model.mesh.generate(2)
 	# Write mesh data:
-	#gmsh.write(chemin+"Bad-Apple-Mesh/GFG.msh")
-	gmsh.write(chemin+"Bad-Apple-Mesh/GFG.stl")
+	#gmsh.write(chemin+"GFG.msh")
+	gmsh.write(chemin+"GFG.stl")
 	gmsh.clear()
 	gmsh.finalize()
 
@@ -39,7 +45,7 @@ def meshing_main(contours):
 		try:
 			print("Longueur contour",len(contour))
 			meshing(contour)
-			with open(chemin+"Bad-Apple-Mesh/GFG.stl") as stl:
+			with open(chemin+"GFG.stl") as stl:
 				texte+=stl.read()
 		except:
 			print("ERREUR")
@@ -50,7 +56,7 @@ def meshing_main(contours):
 
 
 if __name__ == '__main__':
-	#contours,fond=polygon(chemin+'Bad-Apple-Mesh/pomme.png')
-	#contours,fond=polygon(chemin+'Bad-Apple-Mesh/silhouette.png')
-	contours,fond=polygon(chemin+'Bad-Apple-Mesh/chateau.png')
+	#contours,fond=polygon(chemin+'pomme.png')
+	#contours,fond=polygon(chemin+'silhouette.png')
+	contours,fond=polygon(chemin+'chateau.png')
 	texte=meshing_main(contours)

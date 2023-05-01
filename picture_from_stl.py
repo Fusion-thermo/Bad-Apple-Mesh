@@ -1,7 +1,18 @@
 from PIL import Image, ImageDraw
 from mesh_from_polygon import meshing_main
 from polygon_from_image import polygon
-from Chemin import chemin
+import os
+
+path=os.path.realpath(__file__)
+fin=-1
+while path[fin]!="\\":
+    fin-=1
+chemin=path[:fin+1].replace('\\','/')
+fin-=1
+while path[fin]!="\\":
+    fin-=1
+chemin_frames=path[:fin+1].replace('\\','/')
+
 
 def picture(texte, fond, contours, numero="test"):
     lignes=texte.split('\n')
@@ -40,16 +51,16 @@ def picture(texte, fond, contours, numero="test"):
 	
 
     #picture.show()
-    #picture.save(chemin+"Bad-Apple-Mesh/Meshed frames test/"+numero+".png")
-    picture.save(chemin+"Bad-Apple-Mesh/Meshed frames/"+numero+".png")
-    #picture.save(chemin+"Bad-Apple-Mesh/Meshed frames 2/"+numero+".png")
+    #picture.save(chemin+"Meshed frames test/"+numero+".png")
+    picture.save(chemin+"Meshed frames/"+numero+".png")
+    #picture.save(chemin+"Meshed frames 2/"+numero+".png")
 
 
 
 if __name__ == '__main__':
-    #contours,fond=polygon(chemin+'Bad-Apple-Mesh/pomme.png')
-    #contours,fond=polygon(chemin+'Bad-Apple-Mesh/silhouette.png')
-    #contours,fond=polygon(chemin+'Bad-Apple-Mesh/chateau.png')
-    contours,fond=polygon(chemin+'Bad-Apple-circles/Bad Apple frames/65.png')
+    #contours,fond=polygon(chemin+'pomme.png')
+    #contours,fond=polygon(chemin+'silhouette.png')
+    #contours,fond=polygon(chemin+'chateau.png')
+    contours,fond=polygon(chemin_frames+'Bad-Apple-circles/Bad Apple frames/65.png')
     texte=meshing_main(contours)
     picture(texte,fond,contours)
